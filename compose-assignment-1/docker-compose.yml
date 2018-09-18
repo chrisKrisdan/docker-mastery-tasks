@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+
+  cmf:
+    image: drupal:8.6.0-rc1-apache
+    ports:
+      - 8080:80
+    volumes:
+      - ./modules:/var/www/html/modules
+      - ./profiles:/var/www/html/profiles
+      - ./themes:/var/www/html/themes
+#      - ./sites:/var/www/html/sites
+    restart: always
+
+  db:
+    image: postgres:10.5-alpine
+    environment:
+      POSTGRES_PASSWORD: cheeky
+      # dbname=postgres
+      # dbuser=postgres
+      # hostname=db
+    restart: always
